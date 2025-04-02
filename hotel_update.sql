@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
--- Host: localhost    Database: hotelmanagement
+-- Host: localhost    Database: hotelm
 -- ------------------------------------------------------
 -- Server version	8.0.41
 
@@ -24,9 +24,9 @@ DROP TABLE IF EXISTS `chain`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `chain` (
   `Chain_Name` varchar(45) DEFAULT NULL,
-  `Chain_ID` int NOT NULL,
-  PRIMARY KEY (`Chain_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `chain_id` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`chain_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,15 +49,15 @@ DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
   `Chain_ID` int DEFAULT NULL,
   `Hotel_ID` int DEFAULT NULL,
-  `C_ID` int NOT NULL,
+  `c_id` int NOT NULL AUTO_INCREMENT,
   `C_Name` varchar(30) DEFAULT NULL,
   `Check_In` date DEFAULT NULL,
   `Check_Out` date DEFAULT NULL,
   `Phone` bigint DEFAULT NULL,
   `Room_No` int DEFAULT NULL,
   `Room_Type` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`C_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`c_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6032 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,14 +80,14 @@ DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee` (
   `Chain_ID` int DEFAULT NULL,
   `Hotel_ID` int DEFAULT NULL,
-  `E_ID` int NOT NULL,
+  `e_id` int NOT NULL AUTO_INCREMENT,
   `E_Name` varchar(30) DEFAULT NULL,
   `Occupation` varchar(30) DEFAULT NULL,
   `Salary` int DEFAULT NULL,
   `Join_Date` date DEFAULT NULL,
   `Phone` bigint DEFAULT NULL,
-  PRIMARY KEY (`E_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`e_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3521 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,4 +190,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-28  7:47:00
+-- Dump completed on 2025-04-03  2:35:24
