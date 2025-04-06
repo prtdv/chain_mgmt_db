@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Data</title>
+    <link rel="stylesheet" href="fbm.css">
+</head>
+<body>
+    <h1>Customer Data</h1>
+    <table id="customerTable">
+        <thead>
+            <tr>
+                <th>Chain_ID</th>
+                <th>Hotel_ID</th>
+                <th>C_Name</th>
+                <th>Check_In</th>
+                <th>Check_Out</th>
+                <th>Phone</th>
+                <th>Room_No</th>
+                <th>Room_Type</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toISOString().split('T')[0]; // Returns 'YYYY-MM-DD'
+}
+
+async function fetchCustomers() {
+    try {
+        const response = await fetch('http://localhost:3000/customers');
+        const customers = await response.json();
+        
+        const tableBody = document.querySelector('#customerTable tbody');
+        tableBody.innerHTML = ''; // Clear previous data
+
+        customers.forEach(customer => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${customer.Chain_ID}</td>
+                <td>${customer.Hotel_ID}</td>
+                <td>${customer.C_Name}</td>
+                <td>${formatDate(customer.Check_In)}</td>
+                <td>${formatDate(customer.Check_Out)}</td>
+                <td>${customer.Phone}</td>
+                <td>${customer.Room_No}</td>
+                <td>${customer.Room_Type}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+fetchCustomers();    
+</script>
+    <script src="server.js"></script>
+</body>
+</html>
