@@ -14,7 +14,6 @@ const db = mysql.createConnection({
     user: 'root',
     password: '7140',
     database: 'hotelm',
-    timezone: 'Z'
 });
 
 // Connect to MySQL
@@ -23,7 +22,6 @@ db.connect(err => {
     console.log('Connected to MySQL Database');
 });
 
-// Handle form submission
 app.post('/submit', (req, res) => {
     var {Chain_ID, Hotel_ID, C_Name, Check_In, Check_Out, Phone, Room_No, Room_Type} = req.body;
     Room_No=parseInt(Room_No);
@@ -32,7 +30,8 @@ app.post('/submit', (req, res) => {
     const arr= [Chain_ID, Hotel_ID, C_Name, Check_In, Check_Out, Phone, Room_No, Room_Type];
     console.log(req.body);
 
-    const query = ` ININSERTTO customer (Chain_ID, Hotel_ID, C_Name, Check_In, Check_Out, Phone, Room_No, Room_Type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+    const query = ` INSERT INTO customer (Chain_ID, Hotel_ID, C_Name, Check_In, Check_Out, Phone, Room_No, Room_Type)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
 
     db.query(query, arr, (err, result) => {
         if (err) throw err;
@@ -41,18 +40,56 @@ app.post('/submit', (req, res) => {
     });
 });
 
-app.get('/customers', (req, res) => {
-    const query = `SELECT * FROM customer ORDER BY c_id DESC`;
+app.get('/customer-data', (req, res) => {
+    const query = 'SELECT * FROM customer_wtimestamp order by c_id desc';
 
     db.query(query, (err, results) => {
         if (err) {
-            console.error('Database error:', err);
-            return res.status(500).send('Database error occurred');
+            console.error('Error fetching data:', err);
+            res.status(500).json({ error: 'Database error' });
+        } else {
+            res.json(results);
         }
-        res.json(results); // Send the data as JSON
     });
 });
 
+
+app.get('/employees', (req, res) => {
+    const query = 'SELECT * FROM employee_wyearsofservice ORDER BY e_id DESC';
+    db.query(query, (err, results) => {
+      if (err) {
+        console.error('Error retrieving data:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+      } else {
+        res.json(results);
+      }
+    });
+  });  
+
+app.get('/inventory', (req, res) => {
+    const query = 'SELECT * FROM inventory_wrestockfunc';
+    db.query(query, (err, results) => {
+      if (err) {
+        console.error('Error retrieving inventory data:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+      } else {
+        res.json(results);
+      }
+    });
+});
+  
+
+app.get('/customer-logs', (req, res) => {
+    const query = 'SELECT * FROM customer_log ORDER BY c_id DESC';
+    db.query(query, (err, results) => {
+      if (err) {
+        console.error('Error retrieving data:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+      } else {
+        res.json(results);
+      }
+    });
+  });  
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });

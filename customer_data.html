@@ -2,64 +2,104 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Data</title>
+    <title>Customer Table</title>
+    <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+      color: black;
+    }
+    body{
+      background-color: black;
+      color: white
+    }
+    </style>
     <link rel="stylesheet" href="fbm.css">
 </head>
 <body>
-    <h1>Customer Data</h1>
-    <table id="customerTable">
-        <thead>
-            <tr>
-                <th>Chain_ID</th>
-                <th>Hotel_ID</th>
-                <th>C_Name</th>
-                <th>Check_In</th>
-                <th>Check_Out</th>
-                <th>Phone</th>
-                <th>Room_No</th>
-                <th>Room_Type</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
 
-    <script>
-function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toISOString().split('T')[0]; // Returns 'YYYY-MM-DD'
-}
+<h1>Customer Data</h1>
+<table id="customerTable">
+    <thead>
+        <tr>
+            <th>Chain ID</th>
+            <th>Hotel ID</th>
+            <th>Customer ID</th>
+            <th>Name</th>
+            <th>Check-In</th>
+            <th>Check-Out</th>
+            <th>Phone</th>
+            <th>Room No</th>
+            <th>Room Type</th>
+            <th>Timestamp</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
 
-async function fetchCustomers() {
-    try {
-        const response = await fetch('http://localhost:3000/customers');
-        const customers = await response.json();
-        
-        const tableBody = document.querySelector('#customerTable tbody');
-        tableBody.innerHTML = ''; // Clear previous data
+<script>
+  fetch('http://localhost:3000/customer-data')
+      .then(response => response.json())
+      .then(data => {
+          const tbody = document.querySelector('#customerTable tbody');
+          
+          // Format Date function to handle invalid date
+          const formatDate = (dateStr) => {
+              const date = new Date(dateStr);
+              if (isNaN(date)) {
+                  return '-';  // Return a dash if the date is invalid
+              }
+              return date.toLocaleDateString();  // Format only date as "yyyy-mm-dd"
+          };
 
-        customers.forEach(customer => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${customer.Chain_ID}</td>
-                <td>${customer.Hotel_ID}</td>
-                <td>${customer.C_Name}</td>
-                <td>${formatDate(customer.Check_In)}</td>
-                <td>${formatDate(customer.Check_Out)}</td>
-                <td>${customer.Phone}</td>
-                <td>${customer.Room_No}</td>
-                <td>${customer.Room_Type}</td>
-            `;
-            tableBody.appendChild(row);
-        });
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-}
+          // Format Date and Time function
+          const formatDateTime = (dateStr) => {
+              const date = new Date(dateStr);
+              if (isNaN(date)) {
+                  return '-';  // Return a dash if the date is invalid
+              }
+              return date.toLocaleString();  // Format date and time as "yyyy-mm-dd hh:mm:ss"
+          };
 
-fetchCustomers();    
+          data.forEach(row => {
+              const tr = document.createElement('tr');
+              
+              // Apply formatDate for Check-In, Check-Out (only date)
+              const checkIn = formatDate(row.Check_In);
+              const checkOut = formatDate(row.Check_Out);
+
+              // Apply formatDateTime for Timestamp (date and time)
+              const timestamp = formatDateTime(row.Timestamp);
+
+              tr.innerHTML = `
+                  <td>${row.Chain_ID}</td>
+                  <td>${row.Hotel_ID}</td>
+                  <td>${row.c_id}</td>
+                  <td>${row.C_Name}</td>
+                  <td>${checkIn}</td>
+                  <td>${checkOut}</td>
+                  <td>${row.Phone}</td>
+                  <td>${row.Room_No}</td>
+                  <td>${row.Room_Type}</td>
+                  <td>${timestamp}</td>
+              `;
+              tbody.appendChild(tr);
+          });
+      })
+      .catch(error => {
+          console.error('Error fetching data:', error);
+      });
 </script>
-    <script src="server.js"></script>
+
+
 </body>
 </html>

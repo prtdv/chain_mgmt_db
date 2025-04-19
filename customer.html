@@ -23,21 +23,21 @@
         <label for="Hotel_ID">Hotel</label>
         <select name="Hotel_ID" id="Hotel_ID">
             <option value="" selected disabled>Select Here</option>
-            <option value="101">Hilton Manhattan</option>
-            <option value="102">Hilton LA Downtown</option>
-            <option value="103">Hilton Chicago Riverwalk</option>
-            <option value="201">Marriott London West</option>
-            <option value="202">Marriott Champs-Elysées</option>
-            <option value="301">Hyatt Place Lyon</option>
-            <option value="302">Hyatt Berlin Central</option>
-            <option value="303">Hyatt Regency Rome</option>
-            <option value="304">Hyatt Grand Barcelona</option>
-            <option value="401">Radisson Blu Munich</option>
-            <option value="501">Taj Mahal Palace</option>
-            <option value="502">Taj Diplomatic Enclave</option>    
-            <option value="503">Taj Bangalore Royale</option>
-            <option value="504">Taj Marina Bay</option>
-            <option value="505">Taj Eastern Pearl</option>
+            <option value="101" class="hide" chain="1" name="Hotel">Hilton Manhattan</option>
+            <option value="102" class="hide" chain="1" name="Hotel">Hilton LA Downtown</option>
+            <option value="103" class="hide" chain="1" name="Hotel">Hilton Chicago Riverwalk</option>
+            <option value="201" class="hide" chain="2" name="Hotel">Marriott London West</option>
+            <option value="202" class="hide" chain="2" name="Hotel">Marriott Champs-Elysées</option>
+            <option value="301" class="hide" chain="3" name="Hotel">Hyatt Place Lyon</option>
+            <option value="302" class="hide" chain="3" name="Hotel">Hyatt Berlin Central</option>
+            <option value="303" class="hide" chain="3" name="Hotel">Hyatt Regency Rome</option>
+            <option value="304" class="hide" chain="3" name="Hotel">Hyatt Grand Barcelona</option>
+            <option value="401" class="hide" chain="4" name="Hotel">Radisson Blu Munich</option>
+            <option value="501" class="hide" chain="5" name="Hotel">Taj Mahal Palace</option>
+            <option value="502" class="hide" chain="5" name="Hotel">Taj Diplomatic Enclave</option>    
+            <option value="503" class="hide" chain="5" name="Hotel">Taj Bangalore Royale</option>
+            <option value="504" class="hide" chain="5" name="Hotel">Taj Marina Bay</option>
+            <option value="505" class="hide" chain="5" name="Hotel">Taj Eastern Pearl</option>
         </select>
 
         <label for="C_Name">Customer Name</label>
@@ -48,6 +48,7 @@
         <input type="date" name="Check_Out" id="Check_Out">
         <label for="Phone">Phone Number</label>
         <input type="tel" name="Phone" id="Phone">
+        <p style="color: rgb(208, 2, 2); font-weight: 700;" class="hide" id="error">ERROR: Phone number is out of range.</p>
         <label for="Room_No">Room Number</label>
         <input type="number" name="Room_No" id="Phone">
 
@@ -59,14 +60,12 @@
             <option value="Suite">Suite</option>
             <option value="Penthouse">Penthouse</option>
         </select>
-        
         <select class="hide" name="Room_Type" id="102">
             <option value="" disabled selected>Select Here</option>
             <option value="Standard">Standard</option>
             <option value="Deluxe">Deluxe</option>
             <option value="Suite">Suite</option>
         </select>
-        
         <select class="hide" name="Room_Type" id="103">
             <option value="" disabled selected>Select Here</option>
             <option value="Penthouse">Penthouse</option>
@@ -74,36 +73,31 @@
             <option value="Deluxe">Deluxe</option>
             <option value="Standard">Standard</option>
         </select>
-        
         <select class="hide" name="Room_Type" id="201">
             <option value="" disabled selected>Select Here</option>
             <option value="Standard">Standard</option>
             <option value="Deluxe">Deluxe</option>
             <option value="Suite">Suite</option>
         </select>
-        
         <select class="hide" name="Room_Type" id="202">
             <option value="" disabled selected>Select Here</option>
             <option value="Standard">Standard</option>
             <option value="Deluxe">Deluxe</option>
             <option value="Suite">Suite</option>
-        </select>
-        
+        </select>     
         <select class="hide" name="Room_Type" id="301">
             <option value="" disabled selected>Select Here</option>
             <option value="Standard">Standard</option>
             <option value="Deluxe">Deluxe</option>
             <option value="Suite">Suite</option>
         </select>
-        
         <select class="hide" name="Room_Type" id="302">
             <option value="" disabled selected>Select Here</option>
             <option value="Standard">Standard</option>
             <option value="Presidential">Presidential</option>
             <option value="Deluxe">Deluxe</option>
             <option value="Suite">Suite</option>
-        </select>
-        
+        </select> 
         <select class="hide" name="Room_Type" id="303">
             <option value="" disabled selected>Select Here</option>
             <option value="Suite">Suite</option>
@@ -111,7 +105,6 @@
             <option value="Deluxe">Deluxe</option>
             <option value="Penthouse">Penthouse</option>
         </select>
-        
         <select class="hide" name="Room_Type" id="304">
             <option value="" disabled selected>Select Here</option>
             <option value="Standard">Standard</option>
@@ -119,7 +112,6 @@
             <option value="Suite">Suite</option>
             <option value="Penthouse">Penthouse</option>
         </select>
-        
         <select class="hide" name="Room_Type" id="401">
             <option value="" disabled selected>Select Here</option>
             <option value="Penthouse">Penthouse</option>
@@ -128,32 +120,27 @@
             <option value="Suite">Suite</option>
             <option value="Deluxe">Deluxe</option>
         </select>
-        
         <select class="hide" name="Room_Type" id="501">
             <option value="" disabled selected>Select Here</option>
             <option value="Penthouse">Penthouse</option>
             <option value="Standard">Standard</option>
             <option value="Deluxe">Deluxe</option>
         </select>
-        
         <select class="hide" name="Room_Type" id="502">
             <option value="" disabled selected>Select Here</option>
             <option value="Deluxe">Deluxe</option>
             <option value="Standard">Standard</option>
         </select>
-        
         <select class="hide" name="Room_Type" id="503">
             <option value="" disabled selected>Select Here</option>
             <option value="Suite">Suite</option>
             <option value="Standard">Standard</option>
         </select>
-        
         <select class="hide" name="Room_Type" id="504">
             <option value="" disabled selected>Select Here</option>
             <option value="Standard">Standard</option>
             <option value="Deluxe">Deluxe</option>
         </select>
-        
         <select class="hide" name="Room_Type" id="505">
             <option value="" disabled selected>Select Here</option>
             <option value="Standard">Standard</option>
@@ -162,13 +149,26 @@
             <option value="Suite">Suite</option>
         </select>    
         <button type="submit">Submit</button>
-        
     </form>
 </main>
+
+<script>
+    var phone_input=document.getElementById('Phone');
+    const error=document.getElementById('error')
+    phone_input.addEventListener('input',unhide);
+    function unhide(){
+    if (phone_input.value.length>10){
+        error.classList.remove('hide');
+    }
+    else{
+        error.classList.add('hide');
+    }
+ }
+</script>
 <script>
     var x= document.getElementById('Hotel_ID');
     var y=document.querySelectorAll('[name="Room_Type"]');
-    const eve=x.addEventListener('input',unhide);
+    x.addEventListener('input',unhide);
     function unhide()
     {
     for (i=0; i<y.length;i++){
@@ -181,6 +181,21 @@
         y[i].classList.add('hide');
         }
      }
+    }
+</script>
+<script>
+    var chain_input=document.getElementById("Chain_ID");
+    var hotel_id_select=document.querySelectorAll('[name="Hotel"]')
+    var event=chain_input.addEventListener('input',unhide);
+    function unhide(){
+        for (i=0;i<hotel_id_select.length;i++){
+            if(hotel_id_select[i].attributes['chain'].value==chain_input.value){
+                hotel_id_select[i].classList.remove('hide');
+            }
+            else{
+                    hotel_id_select[i].classList.add('hide');
+            }
+        }
     }
 </script>
 <script src="server.js"></script>

@@ -42,13 +42,13 @@ header{
 h1{
     margin: 0;
     display: flex;
-    justify-content: start;
-    padding: 0px 10px;
-    font-size: 450%;
-    font-family: "Inter", sans-serif;
+    justify-content: center;
+    align-content: center;
+    padding: 50px;
+    font-size: 250%;
     box-shadow: 10px 10px 30px #2e2a2c;
-    background-color: black;
-    color: white;
+    background-color: rgb(23, 23, 23);
+    color: rgb(180, 180, 180);
 }
 h2{
     font-size: 300%;
@@ -179,19 +179,6 @@ form{
 
 .hide{
     display: none;
-}
-table {
-    width: 80%;
-    border-collapse: collapse;
-    margin: 20px auto;
-}
-th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-th {
-    background-color: #f4f4f4;
 }
 
 .frontpage{

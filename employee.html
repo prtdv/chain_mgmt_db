@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Employee List</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+      color: black;
+    }
+    body{
+      background-color: black;
+      color: white
+    }
+  </style>
+    <link rel="stylesheet" href="fbm.css">
+
+</head>
+<body>
+  <h1>Employee List</h1>
+  <table id="employeeTable">
+    <thead>
+      <tr>
+        <th>Chain ID</th>
+        <th>Hotel ID</th>
+        <th>Employee ID</th>
+        <th>Name</th>
+        <th>Occupation</th>
+        <th>Salary</th>
+        <th>Join Date</th>
+        <th>Phone</th>
+        <th>Years of Service</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    fetch('http://localhost:3000/employees')
+      .then(response => response.json())
+      .then(data => {
+        const tbody = document.querySelector('#employeeTable tbody');
+        data.forEach(emp => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${emp.Chain_ID ?? ''}</td>
+            <td>${emp.Hotel_ID ?? ''}</td>
+            <td>${emp.e_id}</td>
+            <td>${emp.E_Name ?? ''}</td>
+            <td>${emp.Occupation ?? ''}</td>
+            <td>${emp.Salary ?? ''}</td>
+            <td>${emp.Join_Date ? emp.Join_Date.split('T')[0] : ''}</td>
+            <td>${emp.Phone ?? ''}</td>
+            <td>${emp.Years_of_Service ?? ''}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching employee data:', error);
+      });
+  </script>
+</body>
+</html>

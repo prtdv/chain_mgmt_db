@@ -1,0 +1,70 @@
+//working
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Logs</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+      color: black;
+    }
+    body{
+      background-color: black;
+      color: white
+    }
+  </style>
+  <link rel="stylesheet" href="fbm.css">
+</head>
+<body>
+  <h1>Customer Logs</h1>
+  <table id="logTable">
+    <thead>
+      <tr>
+        <th>Log ID</th>
+        <th>Customer ID</th>
+        <th>Name</th>
+        <th>Hotel ID</th>
+        <th>Room No</th>
+        <th>Check-In Date</th>
+        <th>Timestamp</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <script>
+    fetch('http://localhost:3000/customer-logs')
+      .then(response => response.json())
+      .then(data => {
+        const tbody = document.querySelector('#logTable tbody');
+        data.forEach(log => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${log.log_id}</td>
+            <td>${log.c_id ?? ''}</td>
+            <td>${log.C_Name ?? ''}</td>
+            <td>${log.Hotel_ID ?? ''}</td>
+            <td>${log.Room_No ?? ''}</td>
+            <td>${log.Check_In ? new Date(log.Check_In).toLocaleString() : ''}</td>
+            <td>${log.Timestamp ? new Date(log.Timestamp).toLocaleString() : ''}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching customer logs:', error);
+      });
+  </script>
+  </body>
+</html>
